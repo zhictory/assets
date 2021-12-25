@@ -73,12 +73,9 @@ var circleLeft = document.getElementsByClassName("circleLeft")[0];
 var rightColorStop = this.document.getElementById("rightColorStop");
 var leftColorStart = this.document.getElementById("leftColorStart");
 
-// batteryInfo.style.display = "none";
-// firmwarePoint.style.display = "none";
-// reconnect.style.display = "none";
-batteryInfo.style.display = "none";
-firmwarePoint.style.display = "none";
-reconnect.style.display = "none";
+batteryInfo.style.visibility = "hidden";
+firmwarePoint.style.visibility = "hidden";
+reconnect.style.visibility = "hidden";
 devUpdate.style.opacity = 0.6;
 
 tipLater.addEventListener("click", function (event) {
@@ -194,7 +191,7 @@ function onBLEConnectionStateChange() {
     if (data.connected) {
       statusLeft.innerHTML = "已连接";
       isConnect = true;
-      loadingImg.style.display = "none";
+      loadingImg.style.visibility = "hidden";
 
       onBLECharacteristicValueChange(); // 监听低功耗蓝牙设备的特征值变化
       notifyBle(); // 信道建立
@@ -203,9 +200,9 @@ function onBLEConnectionStateChange() {
       isDiscover = false;
       isConnect = false;
       statusLeft.innerHTML = "未连接";
-      reconnect.style.display = "block";
-      batteryInfo.style.display = "none";
-      loadingImg.style.display = "none";
+      reconnect.style.visibility = "visible";
+      batteryInfo.style.visibility = "hidden";
+      loadingImg.style.visibility = "hidden";
       if (mainStatus.innerHTML != "更新成功") {
         mainStatus.innerHTML = "更新失败";
         mainStatus.style.color = "rgba(237,111,42,1)";
@@ -236,8 +233,8 @@ function onBluetoothDeviceFound() {
   window.bluetoothDeviceCallBack = (res) => {
     let data = d(res);
     statusLeft.innerHTML = "连接中";
-    reconnect.style.display = "none";
-    loadingImg.style.display = "block";
+    reconnect.style.visibility = "hidden";
+    loadingImg.style.visibility = "visible";
     // console.log('附近设备的信息:',data);
 
     // 把被扫描到的蓝牙设备的mac地址与当前要建立连接设备的mac地址做对比，
@@ -295,9 +292,9 @@ function onBluetoothDeviceFound() {
     if (!isConnect) {
       window.hilink.stopBluetoothDevicesDiscovery();
       statusLeft.innerHTML = "未连接";
-      reconnect.style.display = "block";
-      batteryInfo.style.display = "none";
-      loadingImg.style.display = "none";
+      reconnect.style.visibility = "visible";
+      batteryInfo.style.visibility = "hidden";
+      loadingImg.style.visibility = "hidden";
 
       backgroundColor.style.display = "";
     }
@@ -372,7 +369,7 @@ function onReceiveData(data) {
   switch (d2) {
     case "91": //电量
       var battery = data.substring(10, 12);
-      batteryInfo.style.display = "block";
+      batteryInfo.style.visibility = "visible";
 
       if (isDark) {
         switch (battery) {
@@ -706,10 +703,10 @@ AV.init({
 function checkUpdate() {
   mainStatus.innerHTML = "正在检查...";
   bottomButton.innerHTML = "正在检查";
-  versionSize.style.display = "none";
+  versionSize.style.visibility = "hidden";
   statusProgress.style.display = "none";
-  firmwarePoint2.style.display = "none";
-  firmwarePoint.style.display = "none";
+  firmwarePoint2.style.visibility = "hidden";
+  firmwarePoint.style.visibility = "hidden";
 
   const query = new AV.Query("VersionControl");
 
@@ -729,29 +726,29 @@ function checkUpdate() {
     if (remoteVersion1 > localVersion1) {
       versionTitle.innerHTML = "新版本";
       versionNumber.innerHTML = "V1." + remoteVersion1 + "." + localVersion4;
-      versionSize.style.display = "block";
+      versionSize.style.visibility = "visible";
       versionSize.innerHTML = "大小：" + Math.ceil(gimbalBin_1.size() / 1024) + "k";
-      firmwarePoint2.style.display = "block";
+      firmwarePoint2.style.visibility = "visible";
       firmwarePoint2.style.left = 6.5 + "rem";
-      firmwarePoint.style.display = "block";
+      firmwarePoint.style.visibility = "visible";
       mainStatus.innerHTML = "发现新版本";
       bottomButton.innerHTML = "开始更新";
     } else if (remoteVersion4 > localVersion4) {
       versionTitle.innerHTML = "新版本";
       versionNumber.innerHTML = "V1." + localVersion1 + "." + remoteVersion4;
-      versionSize.style.display = "block";
+      versionSize.style.visibility = "visible";
       versionSize.innerHTML = "大小：" + Math.ceil(gimbalBin_4.size() / 1024) + "k";
-      firmwarePoint2.style.display = "block";
+      firmwarePoint2.style.visibility = "visible";
       firmwarePoint2.style.left = 6.5 + "rem";
-      firmwarePoint.style.display = "block";
+      firmwarePoint.style.visibility = "visible";
       mainStatus.innerHTML = "发现新版本";
       bottomButton.innerHTML = "开始更新";
     } else {
       versionTitle.innerHTML = "当前版本";
       versionNumber.innerHTML = "V1." + localVersion1 + "." + localVersion4;
-      versionSize.style.display = "none";
-      firmwarePoint2.style.display = "none";
-      firmwarePoint.style.display = "none";
+      versionSize.style.visibility = "hidden";
+      firmwarePoint2.style.visibility = "hidden";
+      firmwarePoint.style.visibility = "hidden";
       mainStatus.innerHTML = "已是最新版";
       bottomButton.innerHTML = "检查更新";
     }
@@ -803,5 +800,5 @@ function setDarkMode() {
 
 setDarkMode();
 
-// pageControl.style.display = "none";
-// pageUpdate.style.display = "";
+pageControl.style.display = "none";
+pageUpdate.style.display = "";
