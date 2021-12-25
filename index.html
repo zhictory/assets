@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="./css/common.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <title>Capture π</title>
+</head>
+<body>
+
+
+<div id="app">
+    <!-- 头部导航栏 -->
+    <header class="header">
+        <div class="headerWrap">
+            <div class="iphoneStatus"></div>
+            <div class="devTitle">
+                <div class="barLeft">
+                    <img class="goApp" src="./img/light/public/ic_back.png" alt="返回">
+                </div>`
+                <div class="devName">FUNSNAP Capture Pi</div>
+
+                <div class="barRight">
+                    <img class="devMore" src="./img/light/public/ic_device_info.png">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="appMargin">
+
+        <!-- 设备控制界面 -->
+        <div class="pageControl">
+            <!-- 设备图片+logo -->
+            <section class="devImg">
+                <div class="devTop"></div>
+                <div class="deviceImg"></div>
+            </section>
+
+            <!-- 设备状态栏-->
+            <section class="devStatus">
+                <div class="statusLeft">未连接</div>
+
+                <div class="reconnect">重新连接</div>
+
+                <div class="batteryInfo">
+                    <img class="batteryImg" src="./img/light/public/ic_battery_1.png"/>
+                    <div class="batteryNum">20</div>
+                    <div class="batteryUnit">%</div>
+                </div>
+
+                <img class="loadingImg" src="./img/light/loading.gif"/>
+            </section>
+
+            <!-- 功能操作区 -->
+            <section class="devFn">
+                <div class="firmwareUpdate">固件更新</div>
+                <div class="firmwareVersion"></div>
+
+                <img class="updateImg" src="./img/light/public/icon_update.png"/>
+                <img class="firmwarePoint" src="./img/light/ic_point.png"/>
+            </section>
+        </div>
+
+
+        <div class="pageUpdate" style="display:none">
+            <!-- 固件升级界面 -->
+            <section class="topImg">
+
+                <div class="progressContainer">
+                    <svg width="25.2rem" height="25.2rem"  viewBox="0 0 25.2rem 25.2rem">
+                        <defs>
+                            <linearGradient id="color">
+                                <stop id="rightColorStop" offset="0%"  stop-color="#254FF7"/>
+                                <stop offset="100%" stop-color="#86C1FF"/>
+                            </linearGradient>
+                        </defs>
+
+                        <circle cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='#00000008' stroke-width="2.4rem" fill="none"  stroke-linecap="round" ></circle>
+                        <circle class="circleRight"  cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='url(#color)' stroke-width="2.4rem" fill="none" style="stroke-dasharray: 10rem,71.628rem" stroke-linecap="round" ></circle>
+                    </svg>
+                </div>
+
+                <div class="progressContainer2">
+                    <svg width="25.2rem" height="25.2rem"  viewBox="0 0 25.2rem 25.2rem">
+                        <defs>
+                            <linearGradient id="cc">
+                                <stop offset="0%"  stop-color="#254FF7"/>
+                                <stop id="leftColorStart" offset="100%" stop-color="#5688fb"/>
+                            </linearGradient>
+                        </defs>
+
+                        <circle class="circleLeft"  cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='url(#cc)' stroke-width="2.4rem" fill="none" style="stroke-dasharray: 0rem,71.628rem" stroke-linecap="round" ></circle>
+                    </svg>
+                </div>
+
+                <div class="updateCircleImg">
+                    <img class="arrowTop" src="./img/light/ic_arrow_top.png"/>
+
+                    <div class="statusProgress" style="display:none">
+                        <div class="text1">50</div>
+                        <div class="text2">%</div>
+                    </div>
+                    <div class="mainVersion">V0.0.0</div>
+                </div>
+
+            </section>
+
+            <section class="updateStatus">
+                <div class="mainStatus">正在检查...</div>
+            </section>
+
+            <!-- 当前版本 -->
+            <section class="devInfo">
+                <div class="versionTitle">当前版本</div>
+                <div class="versionNumber">V0.0.0</div>
+                <div class="versionSize">大小：43k</div>
+
+                <img class="firmwarePoint2" src="./img/light/ic_point.png"/>
+            </section>
+
+            <div class="bottomButton">检查更新</div>
+        </div>
+
+    </div>
+
+    <div class="backgroundColor" style="display:none">
+        <div class="tipsWhite">
+            <div class="tipTitle">
+                <div class="tipFont1">连接失败</div>
+            </div>
+            <div class="tipFont2">请尝试以下操作：</div>
+            <div class="tipFont3">1.请确认设备电量充足，并处于开启状态</div>
+            <div class="tipFont4">2.请将设备靠近要连接的手机（10米以内）</div>
+
+            <div class="tipsFooter">
+                <div class="tipLater">稍后再试</div>
+                <div class="centerLine">|</div>
+                <div class="tipReconnect">重新连接</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<script src="https://code.bdstatic.com/npm/leancloud-storage@4.11.1/dist/av-min.js"></script>
+<script src='./js/index.js'></script>
+
+<script src='./js/ble_load.js'></script>
+
+</html>
