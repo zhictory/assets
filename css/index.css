@@ -12,7 +12,8 @@
 }
 
 #app .appMargin {
-  margin: 0 1.2rem;
+  /* margin: 0 1.2rem; */
+  padding: 0 1.2rem;
   position: relative;
 }
 
@@ -129,6 +130,8 @@
   display: flex;
   flex-direction: column;
   z-index: 10;
+  top: 0;
+  left: 0;
 }
 
 .header .iphoneStatus {
@@ -185,7 +188,7 @@
 
 /* --------------设备+logo --------------------*/
 .devImg {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
 }
@@ -205,7 +208,7 @@
 
 /* ------------设备状态 --------------*/
 .devStatus {
-  width: 100%;
+  /* width: 100%; */
   height: 8.8rem;
   margin-top: 2.8rem;
   position: relative;
@@ -267,12 +270,17 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
-.devStatus .loadingImg {
+.devStatus .statusLoading {
   position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
+.devStatus .loadingImg {
   width: 4.4rem;
   height: 4.4rem;
-  right: 1rem;
-  top: 2.2rem;
 }
 
 .devFn {
@@ -307,21 +315,27 @@
 }
 
 .devFn .updateImg {
-  position: absolute;
   width: 2.4rem;
   height: 2.4rem;
-  right: 1.6rem;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
+}
+
+.devFn .updateImgItem {
+  position: relative;
 }
 
 .devFn .firmwarePoint {
-  position: absolute;
   width: 0.6rem;
   height: 0.6rem;
-  right: 1.5rem;
-  top: 2.1rem;
+  position: absolute;
+  top: 0;
+  right: -0.3rem;
+  z-index: 10;
+}
+
+.devFn .updateIcon {
+  position: absolute;
+  right: 1.6rem;
+  top: 50%;
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
 }
@@ -423,10 +437,16 @@
   position: relative;
 }
 
-.devInfo .versionTitle {
+.devInfo .versionInfo {
   position: absolute;
   left: 1.2rem;
-  top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  height: 8.8rem;
+  justify-content: center;
+}
+
+.devInfo .versionTitle {
   font-size: 1.6rem;
   color: rgba(0, 0, 0, 0.9);
   overflow: hidden;
@@ -435,16 +455,14 @@
 }
 
 .devInfo .firmwarePoint2 {
-  position: absolute;
   width: 0.6rem;
   height: 0.6rem;
-  top: 2.1rem;
+  position: absolute;
+  top: 2.4rem;
+  right: -1rem;
 }
 
 .devInfo .versionNumber {
-  position: absolute;
-  left: 1.2rem;
-  top: 3.6rem;
   font-size: 1.4rem;
   color: rgba(0, 0, 0, 0.6);
   overflow: hidden;
@@ -453,9 +471,6 @@
 }
 
 .devInfo .versionSize {
-  position: absolute;
-  left: 1.2rem;
-  top: 5.4rem;
   font-size: 1.4rem;
   color: rgba(0, 0, 0, 0.6);
   overflow: hidden;

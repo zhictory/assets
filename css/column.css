@@ -1,0 +1,23 @@
+@media (min-width: 1200px) {
+  .col-xxl-4 .card-xxl-4 {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8.8rem;
+  }
+
+  .card-xxl-4.small {
+    height: 6.4rem;
+  }
+
+  .card-xxl-4 .versionInfo {
+    position: relative;
+    left: 0;
+    top: 0;
+    text-align: center;
+  }
+}
