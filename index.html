@@ -105,12 +105,6 @@
                     <section class="topImg">
                       <div class="progressContainer">
                         <svg width="25.2rem" height="25.2rem" viewBox="0 0 25.2rem 25.2rem">
-                          <defs>
-                            <linearGradient id="color">
-                              <stop id="rightColorStop" offset="0%" stop-color="#254FF7" />
-                              <stop offset="100%" stop-color="#86C1FF" />
-                            </linearGradient>
-                          </defs>
                           <circle cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='#00000008' stroke-width="2.4rem"
                             fill="none" stroke-linecap="round"></circle>
                           <circle class="circleRight" cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='url(#color)'
@@ -119,23 +113,10 @@
                           </circle>
                         </svg>
                       </div>
-                      <div class="progressContainer2">
-                        <svg width="25.2rem" height="25.2rem" viewBox="0 0 25.2rem 25.2rem">
-                          <defs>
-                            <linearGradient id="cc">
-                              <stop offset="0%" stop-color="#254FF7" />
-                              <stop id="leftColorStart" offset="100%" stop-color="#5688fb" />
-                            </linearGradient>
-                          </defs>
-
-                          <circle class="circleLeft" cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='url(#cc)'
-                            stroke-width="2.4rem" fill="none" style="stroke-dasharray: 0rem,71.628rem"
-                            stroke-linecap="round"></circle>
-                        </svg>
-                      </div>
+                      <canvas id="progressCircle1" class="progress-circle" width="252" height="252"></canvas>
+                      <canvas id="progressCircle2" class="progress-circle" width="252" height="252"></canvas>
                       <div class="updateCircleImg">
                         <img class="arrowTop" src="./img/light/ic_arrow_top.png" />
-
                         <div class="statusProgress" style="display: none;">
                           <div class="text1">50</div>
                           <div class="text2">%</div>

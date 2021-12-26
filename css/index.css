@@ -347,24 +347,21 @@
   display: flex;
   margin-top: 8rem;
   flex-direction: column;
+  align-items: center;
 }
 
 .topImg .progressContainer {
   position: absolute;
   width: 25.2rem;
   height: 25.2rem;
-  align-self: center;
   margin-top: 1.8rem;
-  transform: rotate(-90deg);
 }
 
-.topImg .progressContainer2 {
-  position: absolute;
+.topImg .progress-circle {
+  margin-top: 1.8rem;
   width: 25.2rem;
   height: 25.2rem;
-  align-self: center;
-  margin-top: 1.8rem;
-  transform: rotate(90deg);
+  position: absolute;
 }
 
 .topImg .updateCircleImg {

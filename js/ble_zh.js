@@ -512,8 +512,15 @@ function sendGroupData(page) {
   bottomButton.innerHTML = "取消";
   statusProgress.style.display = "";
   var percent = Math.floor(((page + 1) / groupNum) * 100);
+
+  new Progress(ctx, pole, petal, radius, "transparent", -1.55, percent, "prev");
+
+  if (percent > petal / 2) {
+    new Progress(ctx2, pole, petal, radius, "transparent", 1.55, percent, "next");
+  }
+
   text1.innerHTML = percent;
-  refreshProgress(percent);
+  // refreshProgress(percent);
   arrowTop.style.display = "none";
   mainVersion.style.marginTop = "0px";
 
@@ -549,7 +556,7 @@ function refreshProgress(percent) {
   }
 }
 
-refreshProgress(10);
+// refreshProgress(10);
 
 //发送固件包数据
 function sendFirmwareMessage(gimbalBin, device, mcu) {
@@ -802,3 +809,159 @@ setDarkMode();
 
 pageControl.style.display = "none";
 pageUpdate.style.display = "";
+
+// TODO path gradient palette
+
+const colors = {
+  0: "#86c1ff",
+  1: "#254ff7",
+};
+
+// https://zhuanlan.zhihu.com/p/84458621
+const palette = (function (palette) {
+  let canvas = document.createElement("canvas"),
+    ctx = canvas.getContext("2d"),
+    gradient = ctx.createLinearGradient(0, 0, 256, 0);
+  canvas.width = 256;
+  canvas.height = 1;
+  for (let i in palette) {
+    gradient.addColorStop(i, palette[i]);
+  }
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 256, 1);
+
+  console.log(ctx.getImageData(0, 0, 256, 1).data);
+
+  return ctx.getImageData(0, 0, 256, 1).data;
+})(colors);
+
+const getRGBForValue = (value) => {
+  let valueRelative = Math.min(Math.max((value - MIN_VALUE) / (MAX_VALUE - MIN_VALUE), 0), 1);
+  // 计算value的颜色索引
+  let paletteIndex = Math.floor(valueRelative * 256) * 4;
+  return [palette[paletteIndex], palette[paletteIndex + 1], palette[paletteIndex + 2]];
+};
+
+// TODO progress canvas
+
+const canvas = document.querySelector("#progressCircle1"); // 获得 canvas 对象
+const ctx = canvas.getContext("2d"); // 获得 canvas 的 2d 对象
+const canvas2 = document.querySelector("#progressCircle2"); // 获得 canvas 对象
+const ctx2 = canvas.getContext("2d"); // 获得 canvas 的 2d 对象
+
+let circleConfig = {
+  // ctx,
+  /*圆心*/
+  x: canvas.width / 2,
+  y: canvas.height / 2,
+  radius: canvas.width / 2,
+  /*环的宽度*/
+  lineWidth: 24,
+  lineCap: "round",
+  startAngle: -(Math.PI / 2),
+  endAngle: 2 * Math.PI,
+  makeStrokeColor: (ctx, gradientConfig, progress, part) => {
+    const gradient = ctx.createLinearGradient(...gradientConfig);
+
+    if (part === "prev") {
+      gradient.addColorStop(0, "#86c1ff");
+      gradient.addColorStop(1, "#254ff7");
+    }
+
+    if (part === "next") {
+      gradient.addColorStop(0, "#254ff7");
+      gradient.addColorStop(1, "#254ff7");
+    }
+
+    return gradient;
+  },
+};
+
+// https://blog.csdn.net/qq_24380063/article/details/104055086
+class Progress {
+  /**
+   * 三阶贝塞尔曲线模拟圆
+   * @param {Object} context canvas.getContext("2d")
+   * @param {Array} pole 圆心位置
+   * @param {Number} petal 用 petal 段三阶贝塞尔曲线模拟圆
+   * @param {Number} radius 半径
+   * @param {String} color 圆内填充颜色
+   * @param {Number} α 将圆旋转一个α°
+   */
+  constructor(context, pole, petal, radius, color, α = 0, progress, part) {
+    this.ctx = context;
+    this.pole = pole;
+    this.petal = petal;
+    this.radius = radius;
+    this.color = color;
+    this.α = α;
+    this.length = petal * 3;
+    this.buffer = [];
+    this.data = [];
+    if (part === "prev") {
+      this.progress = progress > this.petal / 2 ? this.petal / 2 : progress;
+    }
+    if (part === "next") {
+      progress = progress - this.petal / 2;
+      this.progress = progress > this.petal / 2 ? this.petal / 2 : progress;
+    }
+    this.part = part;
+    this.__init();
+    this.render();
+  }
+
+  __init() {
+    const θ = (2 * Math.PI) / this.petal;
+    const cosθ = Math.cos(θ);
+    const sinθ = Math.sin(θ);
+    const h = (this.radius * (4 * (1 - Math.cos(θ / 2)))) / (3 * Math.sin(θ / 2));
+    const A = [this.radius, 0];
+    const B = [this.radius, h];
+    const C = [this.radius * cosθ + h * sinθ, this.radius * sinθ - h * cosθ];
+    for (let i = 0, idx = 0; i < this.petal; ++i, idx += 3) {
+      const cosNθ = Math.cos(i * θ + this.α);
+      const sinNθ = Math.sin(i * θ + this.α);
+      this.data[idx] = this.__rotate(A, cosNθ, sinNθ);
+      this.data[idx + 1] = this.__rotate(B, cosNθ, sinNθ);
+      this.data[idx + 2] = this.__rotate(C, cosNθ, sinNθ);
+    }
+    this.data.forEach((v, i) => {
+      this.buffer[i] = [v[0] + this.pole[0], v[1] + this.pole[1]];
+    });
+    this.buffer[this.buffer.length] = this.buffer[0];
+  }
+
+  __rotate(p, cosα, sinα) {
+    return [p[0] * cosα - p[1] * sinα, p[1] * cosα + p[0] * sinα];
+  }
+
+  render() {
+    this.ctx.moveTo(...this.buffer[0]);
+    this.ctx.beginPath();
+    this.ctx.lineCap = circleConfig.lineCap;
+    this.ctx.lineWidth = circleConfig.lineWidth;
+    this.startPoint = this.buffer[0];
+    for (let i = 0, idx = 0; i < this.progress; ++i, idx += 3) {
+      const A = this.buffer[idx];
+      const B = this.buffer[idx + 1];
+      const C = this.buffer[idx + 2];
+      const D = this.buffer[idx + 3];
+      this.ctx.lineTo(...A);
+      this.ctx.moveTo(...B, ...C, ...D);
+      this.endPoint = D;
+    }
+    this.ctx.strokeStyle = circleConfig.makeStrokeColor(this.ctx, [...this.startPoint, ...this.endPoint], this.progress, this.part);
+    this.ctx.stroke();
+    this.ctx.closePath();
+  }
+}
+
+circleConfig.radius = canvas.width / 2 - circleConfig.lineWidth / 2;
+
+const pole = [canvas.width / 2, canvas.height / 2];
+const petal = 99;
+const radius = circleConfig.radius;
+
+groupNum = 1024;
+
+sendGroupData(1030);
