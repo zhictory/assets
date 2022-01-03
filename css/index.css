@@ -240,6 +240,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  z-index: 100;
 }
 
 .devStatus .batteryInfo {
@@ -372,6 +373,7 @@
   display: table;
   background-size: cover;
   text-align: center;
+  z-index: 200;
 }
 
 .topImg .arrowTop {
@@ -505,4 +507,40 @@
   background: rgba(10, 89, 247, 0.4);
   text-align: center;
   padding-top: 0.8rem;
+}
+
+.topImg div.progress-circle {
+  margin-top: 1.8rem;
+  width: 25.2rem;
+  height: 25.2rem;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 200;
+}
+
+div.progress-circle.blue {
+  background: transparent;
+  border: 2.4rem solid #f1f3f5;
+  transform: scale(1.23);
+}
+
+div.progress-circle.white {
+  background: #f1f3f5;
+  transform: scale(0.81);
+}
+
+/* div.progress-circle.rect {
+  background: red;
+  border-radius: 0;
+  width: 12.6rem;
+  height: 12.6rem;
+  left: 50%;
+  margin-top: 1.8rem;
+  opacity: 0.7;
+  transform: skewY(70deg);
+  transform-origin: 0 100%;
+} */
+
+.body {
+  overflow: hidden;
 }

@@ -513,12 +513,6 @@ function sendGroupData(page) {
   statusProgress.style.display = "";
   var percent = Math.floor(((page + 1) / groupNum) * 100);
 
-  new Progress(ctx, pole, petal, radius, "transparent", -1.55, percent, "prev");
-
-  if (percent > petal / 2) {
-    new Progress(ctx2, pole, petal, radius, "transparent", 1.55, percent, "next");
-  }
-
   text1.innerHTML = percent;
   // refreshProgress(percent);
   arrowTop.style.display = "none";
@@ -539,24 +533,28 @@ function sendGroupData(page) {
 }
 
 function refreshProgress(percent) {
-  var pathLen = 71.628; //圆的周长
+  // var pathLen = 71.628; //圆的周长
 
-  if (percent > 50) {
-    circleLeft.style.display = "";
-    circleLeft.style.strokeDasharray = (pathLen * (percent - 50)) / 100 + "rem" + ",71.628rem";
-    circleRight.style.strokeDasharray = "35.814rem" + ",71.628rem";
+  // if (percent > 50) {
+  //   circleLeft.style.display = "";
+  //   circleLeft.style.strokeDasharray = (pathLen * (percent - 50)) / 100 + "rem" + ",71.628rem";
+  //   circleRight.style.strokeDasharray = "35.814rem" + ",71.628rem";
 
-    rightColorStop.setAttribute("stop-color", "#ff0000");
-    leftColorStart.setAttribute("stop-color", "#ff0000");
-  } else {
-    circleLeft.style.display = "none";
+  //   rightColorStop.setAttribute("stop-color", "#ff0000");
+  //   leftColorStart.setAttribute("stop-color", "#ff0000");
+  // } else {
+  //   circleLeft.style.display = "none";
 
-    circleRight.style.strokeDasharray = (pathLen * percent) / 100 + "rem" + ",71.628rem";
-    //      rightColorStop.setAttribute("offset","90%");
+  //   circleRight.style.strokeDasharray = (pathLen * percent) / 100 + "rem" + ",71.628rem";
+  //   //      rightColorStop.setAttribute("offset","90%");
+  // }
+
+  new Progress(ctx, pole, petal, radius, "transparent", -1.55, percent, "prev");
+
+  if (percent > petal / 2) {
+    new Progress(ctx2, pole, petal, radius, "transparent", 1.55, percent, "next");
   }
 }
-
-// refreshProgress(10);
 
 //发送固件包数据
 function sendFirmwareMessage(gimbalBin, device, mcu) {
@@ -807,8 +805,8 @@ function setDarkMode() {
 
 setDarkMode();
 
-pageControl.style.display = "none";
-pageUpdate.style.display = "";
+// pageControl.style.display = "none";
+// pageUpdate.style.display = "";
 
 // TODO path gradient palette
 
@@ -962,6 +960,4 @@ const pole = [canvas.width / 2, canvas.height / 2];
 const petal = 99;
 const radius = circleConfig.radius;
 
-groupNum = 1024;
-
-sendGroupData(1030);
+// refreshProgress(10);
