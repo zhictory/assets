@@ -30,7 +30,6 @@
   .layout-right {
     position: absolute;
     right: 0rem;
-    /*background-color: rgba(255, 0, 0, 1);*/
   }
 
   .card-statusLoading {
@@ -46,7 +45,7 @@
 }
 
 @media (min-width: 840px) {
-  .col-xxxl-4 .card-xxxl-4 {
+  .col-4 .card-xxxl-4 {
     position: relative;
     left: 0;
     padding-left: 0;
@@ -77,7 +76,6 @@
   .layout-right {
     position: absolute;
     right: 0rem;
-    /*background-color: rgba(255, 0, 0, 1);*/
   }
 
   .card-statusLoading {
