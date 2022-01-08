@@ -205,7 +205,6 @@ function onBLEConnectionStateChange() {
       loadingImg.style.visibility = "hidden";
       if (mainStatus.innerHTML != "更新成功") {
         mainStatus.innerHTML = "更新失败";
-        mainStatus.style.color = "rgba(237,111,42,1)";
       }
       bottomButton.innerHTML = "知道了";
       devUpdate.style.opacity = 0.6;
@@ -438,7 +437,6 @@ function onReceiveData(data) {
         var currentVersion = "V1." + hex2int(version1) + "." + hex2int(version4);
 
         firmwareVersion.innerHTML = currentVersion;
-        firmwareUpdate.style.top = 1.3 + "rem";
         versionNumber.innerHTML = currentVersion;
         mainVersion.innerHTML = currentVersion;
 
@@ -514,7 +512,7 @@ function sendGroupData(page) {
   var percent = Math.floor(((page + 1) / groupNum) * 100);
 
   text1.innerHTML = percent;
-  // refreshProgress(percent);
+  refreshProgress(percent);
   arrowTop.style.display = "none";
   mainVersion.style.marginTop = "0px";
 
@@ -734,7 +732,7 @@ function checkUpdate() {
       versionSize.style.visibility = "visible";
       versionSize.innerHTML = "大小：" + Math.ceil(gimbalBin_1.size() / 1024) + "k";
       firmwarePoint2.style.visibility = "visible";
-      firmwarePoint2.style.left = 6.5 + "rem";
+      firmwarePoint2.style.left = 5.8 + "rem";
       firmwarePoint.style.visibility = "visible";
       mainStatus.innerHTML = "发现新版本";
       bottomButton.innerHTML = "开始更新";
@@ -744,7 +742,7 @@ function checkUpdate() {
       versionSize.style.visibility = "visible";
       versionSize.innerHTML = "大小：" + Math.ceil(gimbalBin_4.size() / 1024) + "k";
       firmwarePoint2.style.visibility = "visible";
-      firmwarePoint2.style.left = 6.5 + "rem";
+      firmwarePoint2.style.left = 5.8 + "rem";
       firmwarePoint.style.visibility = "visible";
       mainStatus.innerHTML = "发现新版本";
       bottomButton.innerHTML = "开始更新";
@@ -800,6 +798,11 @@ function setDarkMode() {
     this.document.getElementsByClassName("goApp")[0].src = "./img/dark/public/ic_back.png";
     this.document.getElementsByClassName("devMore")[0].src = "./img/dark/public/ic_device_info.png";
     this.document.getElementsByClassName("updateImg")[0].src = "./img/dark/public/icon_update.png";
+    loadingImg.src = "./img/dark/public/loading.gif";
+
+    this.document.getElementsByClassName("white")[0].style.background = "rgba(0,0,0,1)";
+    this.document.getElementsByClassName("blue")[0].style.borderColor = "rgba(0,0,0,1)";
+    this.document.getElementsByClassName("myCircle")[0].style.stroke = "rgba(255,255,255,0.1)";
   }
 }
 
@@ -959,5 +962,3 @@ circleConfig.radius = canvas.width / 2 - circleConfig.lineWidth / 2;
 const pole = [canvas.width / 2, canvas.height / 2];
 const petal = 99;
 const radius = circleConfig.radius;
-
-// refreshProgress(10);

@@ -261,13 +261,11 @@
 .batteryInfo .batteryNum {
   margin-left: 0.4rem;
   font-size: 1.6rem;
-  margin-bottom: 0.2rem;
   color: rgba(0, 0, 0, 0.9);
 }
 
 .batteryInfo .batteryUnit {
   font-size: 1.2rem;
-  margin-top: 0.1rem;
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -293,26 +291,25 @@
   background: white;
 }
 
+.devFn .updateTextItem {
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1.6rem;
+    height:6.4rem;
+}
+
 .devFn .firmwareUpdate {
-  position: absolute;
-  top: 2rem;
-  left: 1.6rem;
   font-size: 1.6rem;
   color: rgba(0, 0, 0, 0.9);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+
 }
 
 .devFn .firmwareVersion {
-  position: absolute;
-  left: 1.6rem;
-  top: 3.4rem;
   font-size: 1.2rem;
   color: rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+
 }
 
 .devFn .updateImg {
@@ -430,8 +427,8 @@
 .devInfo {
   width: 100%;
   height: 8.6rem;
-  margin-top: 4.4rem;
-  border-radius: 1.2rem;
+  margin-top: 3.2rem;
+  border-radius: 1.6rem;
   background-color: white;
   position: relative;
 }

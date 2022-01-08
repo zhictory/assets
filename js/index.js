@@ -36,6 +36,8 @@ function dataChange(res){
 if(window.hilink)
    hilink.setTitleVisible(false);
 
+//   alert(window.screen.height + "," + window.devicePixelRatio);
+
 
 
 

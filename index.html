@@ -21,7 +21,7 @@
         <div class="devTitle">
           <div class="barLeft">
             <img class="goApp" src="./img/light/public/ic_back.png" alt="返回">
-          </div>`
+          </div>
           <div class="devName">FUNSNAP Capture Pi</div>
           <div class="barRight">
             <img class="devMore" src="./img/light/public/ic_device_info.png">
@@ -32,7 +32,7 @@
     <div class="body">
       <div class="row">
         <div class="col-12">
-          <div class="appMargin">
+          <div class="appMargin xxlAppMargin">
             <!-- 设备控制界面 -->
             <div class="pageControl">
               <div class="row">
@@ -54,17 +54,17 @@
                           <div class="col-xxl-4">
                             <div class="statusLeft card-xxl-4">未连接</div>
                           </div>
-                          <div class="col-xxl-4">
+                          <div class="col-xxl-4 layout-right">
                             <div class="reconnect card-xxl-4">重新连接</div>
                           </div>
-                          <div class="col-xxl-4">
-                            <div class="batteryInfo card-xxl-4">
+                          <div class="col-xxl-4 layout-right">
+                            <div class="batteryInfo card-xxl-4 ">
                               <img class="batteryImg" src="./img/light/public/ic_battery_1.png" />
                               <div class="batteryNum">20</div>
                               <div class="batteryUnit">%</div>
                             </div>
-                            <div class="statusLoading card-xxl-4">
-                              <img class="loadingImg" src="./img/light/loading.gif" />
+                            <div class="statusLoading card-statusLoading">
+                              <img class="loadingImg" src="./img/light/public/loading.gif" />
                             </div>
                           </div>
                         </div>
@@ -77,12 +77,13 @@
                       <section class="devFn">
                         <div class="row">
                           <div class="col-xxl-4">
-                            <div class="firmwareUpdate card-xxl-4 small">固件更新</div>
+                            <div class="updateTextItem card-xxl-4 small">
+                                <div class="firmwareUpdate">固件更新</div>
+                                <div class="firmwareVersion"></div>
+                            </div>
                           </div>
-                          <div class="col-xxl-4">
-                            <div class="firmwareVersion card-xxl-4 small"></div>
-                          </div>
-                          <div class="col-xxl-4">
+
+                          <div class="col-xxl-4 layout-right">
                             <div class="updateIcon card-xxl-4 small">
                               <div class="updateImgItem">
                                 <img class="updateImg" src="./img/light/public/icon_update.png" />
@@ -106,13 +107,9 @@
                       <section class="topImg">
                         <!-- 底部灰色圆环 -->
                         <div class="progressContainer">
-                          <svg width="25.2rem" height="25.2rem" viewBox="0 0 25.2rem 25.2rem">
-                            <circle cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='#00000008' stroke-width="2.4rem"
+                          <svg  width="25.2rem" height="25.2rem" viewBox="0 0 25.2rem 25.2rem">
+                            <circle class="myCircle" cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='#00000008' stroke-width="2.4rem"
                               fill="none" stroke-linecap="round"></circle>
-                            <circle class="circleRight" cx='12.6rem' cy='12.6rem' r='11.4rem' stroke='url(#color)'
-                              stroke-width="2.4rem" fill="none" style="stroke-dasharray: 10rem,71.628rem"
-                              stroke-linecap="round">
-                            </circle>
                           </svg>
                         </div>
                         <!-- 两个遮挡圆 -->
