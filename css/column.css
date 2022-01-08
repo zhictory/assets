@@ -1,8 +1,8 @@
-@media (min-width: 640px) {
-  .col-xxl-4 .card-xxl-4 {
+@media (min-width: 840px) {
+  .col-xxxl-4 .card-xxxl-4 {
     position: relative;
     left: 0;
-    padding-left:0;
+    padding-left: 0;
     top: 0;
     transform: none;
     display: flex;
@@ -11,11 +11,11 @@
     height: 8.8rem;
   }
 
-    .card-xxl-4.small {
-      height: 6.4rem;
-    }
+  .card-xxxl-4.small {
+    height: 6.4rem;
+  }
 
-  .card-xxl-4 .versionInfo {
+  .card-xxxl-4 .versionInfo {
     position: relative;
     left: 0;
     top: 0;
@@ -23,21 +23,21 @@
   }
 
   .xxlAppMargin {
-    margin-left:1.2rem;
-    margin-right:1.2rem;
-    }
-
-  .layout-right {
-      position: absolute;
-      right: 0rem;
-        /*background-color: rgba(255, 0, 0, 1);*/
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
   }
 
-   .card-statusLoading {
+  .layout-right {
+    position: absolute;
+    right: 0rem;
+    /*background-color: rgba(255, 0, 0, 1);*/
+  }
+
+  .card-statusLoading {
     position: relative;
     left: 0;
     top: 0;
-    width:100%;
+    width: 100%;
     transform: none;
     display: flex;
     justify-content: center;

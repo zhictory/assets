@@ -292,24 +292,22 @@
 }
 
 .devFn .updateTextItem {
-    position:absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 1.6rem;
-    height:6.4rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1.6rem;
+  height: 6.4rem;
 }
 
 .devFn .firmwareUpdate {
   font-size: 1.6rem;
   color: rgba(0, 0, 0, 0.9);
-
 }
 
 .devFn .firmwareVersion {
   font-size: 1.2rem;
   color: rgba(0, 0, 0, 0.6);
-
 }
 
 .devFn .updateImg {
@@ -340,43 +338,59 @@
 
 /* --------------升级圆圈 --------------------*/
 .topImg {
-  width: 100%;
-  height: 28.8rem;
+  /* width: 100%; */
+  min-height: 28.8rem;
   display: flex;
   margin-top: 8rem;
+  justify-content: center;
+}
+
+.topImg .progress-wrap {
+  position: relative;
+  display: flex;
   flex-direction: column;
   align-items: center;
+  width: 25.2rem;
+  height: 25.2rem;
+  margin-top: 1.8rem;
+}
+
+@media (min-width: 600px) and (max-width: 840px) {
+  .topImg .progress-wrap {
+    width: 33.2rem;
+    height: 33.2rem;
+  }
 }
 
 .topImg .progressContainer {
   position: absolute;
-  width: 25.2rem;
-  height: 25.2rem;
-  margin-top: 1.8rem;
+  width: 100%;
+  height: 100%;
+  border: 3.3rem solid #00000008;
+  border-radius: 50%;
 }
 
 .topImg .progress-circle {
-  margin-top: 1.8rem;
-  width: 25.2rem;
-  height: 25.2rem;
+  width: 100%;
+  height: 100%;
   position: absolute;
 }
 
 .topImg .updateCircleImg {
-  width: 25.2rem;
-  height: 25.2rem;
-  align-self: center;
-  margin-top: 1.8rem;
-  display: table;
+  width: 100%;
+  height: 100%;
   background-size: cover;
-  text-align: center;
   z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .topImg .arrowTop {
   width: 4.2rem;
   height: 4.2rem;
-  margin-top: 9.5rem;
+  /* margin-top: 9.5rem; */
 }
 
 .topImg .mainVersion {
@@ -414,6 +428,7 @@
   margin-top: 2.4rem;
   position: relative;
   text-align: center;
+  z-index: 210;
 }
 
 .updateStatus .mainStatus {
@@ -488,6 +503,13 @@
   background: rgba(10, 89, 247, 1);
   text-align: center;
   padding-top: 0.8rem;
+  z-index: 300;
+}
+
+@media (min-width: 600px) and (max-width: 840px) {
+  .bottomButton {
+    width: 37.5%;
+  }
 }
 
 .bottomButton:active {
@@ -507,9 +529,8 @@
 }
 
 .topImg div.progress-circle {
-  margin-top: 1.8rem;
-  width: 25.2rem;
-  height: 25.2rem;
+  width: 100%;
+  height: 100%;
   position: absolute;
   border-radius: 50%;
   z-index: 200;
