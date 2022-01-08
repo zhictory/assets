@@ -73,9 +73,9 @@ var circleLeft = document.getElementsByClassName("circleLeft")[0];
 var rightColorStop = this.document.getElementById("rightColorStop");
 var leftColorStart = this.document.getElementById("leftColorStart");
 
-batteryInfo.style.visibility = "hidden";
+batteryInfo.style.display = "none";
 firmwarePoint.style.visibility = "hidden";
-reconnect.style.visibility = "hidden";
+reconnect.style.display = "none";
 devUpdate.style.opacity = 0.6;
 
 tipLater.addEventListener("click", function (event) {
@@ -200,8 +200,8 @@ function onBLEConnectionStateChange() {
       isDiscover = false;
       isConnect = false;
       statusLeft.innerHTML = "未连接";
-      reconnect.style.visibility = "visible";
-      batteryInfo.style.visibility = "hidden";
+      reconnect.style.display = "flex";
+      batteryInfo.style.display = "flex";
       loadingImg.style.visibility = "hidden";
       if (mainStatus.innerHTML != "更新成功") {
         mainStatus.innerHTML = "更新失败";
@@ -232,7 +232,7 @@ function onBluetoothDeviceFound() {
   window.bluetoothDeviceCallBack = (res) => {
     let data = d(res);
     statusLeft.innerHTML = "连接中";
-    reconnect.style.visibility = "hidden";
+    reconnect.style.display = "none";
     loadingImg.style.visibility = "visible";
     // console.log('附近设备的信息:',data);
 
@@ -291,8 +291,8 @@ function onBluetoothDeviceFound() {
     if (!isConnect) {
       window.hilink.stopBluetoothDevicesDiscovery();
       statusLeft.innerHTML = "未连接";
-      reconnect.style.visibility = "visible";
-      batteryInfo.style.visibility = "hidden";
+      reconnect.style.display = "flex";
+      batteryInfo.style.display = "none";
       loadingImg.style.visibility = "hidden";
 
       backgroundColor.style.display = "";
@@ -368,7 +368,7 @@ function onReceiveData(data) {
   switch (d2) {
     case "91": //电量
       var battery = data.substring(10, 12);
-      batteryInfo.style.visibility = "visible";
+      batteryInfo.style.display = "flex";
 
       if (isDark) {
         switch (battery) {

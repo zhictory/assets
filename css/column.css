@@ -1,5 +1,7 @@
 @media (min-width: 600px) and (max-width: 840px) {
-  .col-4 .card-xxl-4 {
+  .statusLeft.card-xxl-4,
+  .reconnect.card-xxl-4,
+  .batteryInfo.card-xxl-4 {
     position: relative;
     left: 0;
     padding-left: 0;
@@ -27,17 +29,15 @@
     margin-right: 1.2rem;
   }
 
-  .layout-right {
+  /* .layout-right {
     position: absolute;
     right: 0rem;
-  }
+  } */
 
-  .card-statusLoading {
+  .statusLoading.card-xxl-4 {
     position: relative;
     left: 0;
-    top: 0;
     width: 100%;
-    transform: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,7 +45,9 @@
 }
 
 @media (min-width: 840px) {
-  .col-4 .card-xxxl-4 {
+  .statusLeft.card-xxxl-4,
+  .reconnect.card-xxxl-4,
+  .batteryInfo.card-xxxl-4 {
     position: relative;
     left: 0;
     padding-left: 0;
@@ -73,17 +75,15 @@
     margin-right: 1.2rem;
   }
 
-  .layout-right {
+  /* .layout-right {
     position: absolute;
     right: 0rem;
-  }
+  } */
 
-  .card-statusLoading {
+  .statusLoading.card-xxxl-4 {
     position: relative;
     left: 0;
-    top: 0;
     width: 100%;
-    transform: none;
     display: flex;
     justify-content: center;
     align-items: center;
