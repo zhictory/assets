@@ -808,8 +808,8 @@ function setDarkMode() {
 
 setDarkMode();
 
-pageControl.style.display = "none";
-pageUpdate.style.display = "";
+// pageControl.style.display = "none";
+// pageUpdate.style.display = "";
 
 // TODO path gradient palette
 
