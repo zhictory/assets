@@ -808,8 +808,8 @@ function setDarkMode() {
 
 setDarkMode();
 
-pageControl.style.display = "none";
-pageUpdate.style.display = "";
+// pageControl.style.display = "none";
+// pageUpdate.style.display = "";
 
 // TODO path gradient palette
 
@@ -963,4 +963,4 @@ const pole = [canvas.width / 2, canvas.height / 2];
 const petal = 99;
 const radius = circleConfig.radius;
 
-refreshProgress(50);
+// refreshProgress(50);
