@@ -9,11 +9,16 @@
   <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="./css/index.css">
   <link rel="stylesheet" type="text/css" href="./css/column.css">
+  <link href="./dist/css/app.9cf94ba0.css" rel="preload" as="style">
+  <link href="./dist/js/app.fc273be2.js" rel="preload" as="script">
+  <link href="./dist/js/chunk-vendors.be2e6846.js" rel="preload" as="script">
+  <link href="./dist/css/app.9cf94ba0.css" rel="stylesheet">
   <title>Capture π</title>
 </head>
 
 <body>
-  <div id="app">
+  <!-- <div id="app" class="progressContainer"></div> -->
+  <div id="app-wrap">
     <!-- 头部导航栏 -->
     <header class="header">
       <div class="headerWrap">
@@ -105,21 +110,8 @@
                       <section class="topImg">
                         <div class="progress-wrap">
                           <!-- 底部灰色圆环 -->
-                          <div class="progressContainer"></div>
-                          <!-- 两个遮挡圆 -->
-                          <div class="progress-circle blue"></div>
-                          <div class="progress-circle white"></div>
-                          <!-- 两个半圆进度条 -->
-                          <canvas id="progressCircle1" class="progress-circle" width="252" height="252"></canvas>
-                          <canvas id="progressCircle2" class="progress-circle" width="252" height="252"></canvas>
-                          <!-- 中间标识 icon -->
-                          <div class="updateCircleImg">
-                            <img class="arrowTop" src="./img/light/ic_arrow_top.png" />
-                            <div class="statusProgress" style="display: none;">
-                              <div class="text1">50</div>
-                              <div class="text2">%</div>
-                            </div>
-                            <div class="mainVersion">V0.0.0</div>
+                          <div>
+                            <div id="app"></div>
                           </div>
                         </div>
                       </section>
@@ -186,5 +178,6 @@
 <script src="https://code.bdstatic.com/npm/leancloud-storage@4.11.1/dist/av-min.js"></script>
 <script src='./js/index.js'></script>
 <script src='./js/ble_load.js'></script>
+<script src="./dist/js/chunk-vendors.be2e6846.js"></script>
 
 </html>

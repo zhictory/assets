@@ -1,4 +1,4 @@
-#app {
+#app-wrap {
   width: 100%;
   height: 100%;
   background: #f1f3f5;
@@ -6,12 +6,12 @@
   position: relative;
 }
 
-#app::-webkit-scrollbar {
+#app-wrap::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
 
-#app .appMargin {
+#app-wrap .appMargin {
   /* margin: 0 1.2rem; */
   padding: 0 1.2rem;
   position: relative;
@@ -364,10 +364,10 @@
 
 .topImg .progressContainer {
   position: absolute;
-  width: 100%;
+  /* width: 100%;
   height: 100%;
   border: 3.3rem solid #00000008;
-  border-radius: 50%;
+  border-radius: 50%; */
 }
 
 .topImg .progress-circle {
@@ -385,6 +385,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }
 
 .topImg .arrowTop {
