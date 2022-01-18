@@ -3,7 +3,7 @@
     <svg class="pro-svg">
       <defs>
         <filter id="f1">
-          <feGaussianBlur result="Gau1" in="SourceGraphic" stdDeviation="4" />
+          <feGaussianBlur result="Gau1" in="SourceGraphic" stdDeviation="2" />
           <feOffset dx="-4" dy="5" />
           <feGaussianBlur out="Gau2" result="Gau2" stdDeviation="2" />
           <fecomposite in="Gau1" in2="SourceAlpha" operator="in"></fecomposite>
@@ -34,7 +34,7 @@
           class="circle circle-filter"
           fill="none"
           :stroke-dasharray="progressNum * ((2 * 3.14 * circleR) / 100) + ' 10000'"
-          stroke-width="10%"
+          stroke-width="8%"
           filter="url(#f1)"
         ></circle>
       </template>
@@ -47,35 +47,35 @@
         class="circle"
         fill="none"
         :stroke-dasharray="2 * 3.14 * circleR + ' 10000'"
-        stroke-width="10%"
+        stroke-width="8%"
         :stroke="isDark ? '#1A1A1A' : '#E9EBED'"
       ></circle>
       <!-- 进度条 -->
       <template v-if="state == 2">
         <!-- 阶段二 -->
-        <path :d="pathII" stroke-width="10%" class="path-II" v-show="progressNum > 33"></path>
+        <path :d="pathII" stroke-width="8%" class="path-II" v-show="progressNum > 33"></path>
         <!-- 阶段一 -->
-        <path :d="pathI" stroke-width="10%" class="path-I" :stroke="progressNum > 5 ? 'url(#circleColor)' : '#2B5BF9'" v-show="progressNum > 0"></path>
+        <path :d="pathI" stroke-width="8%" class="path-I" :stroke="progressNum > 5 ? 'url(#circleColor)' : '#2B5BF9'" v-show="progressNum > 0"></path>
         <!-- 阶段三 -->
-        <path :d="pathIII" stroke-width="10%" class="path-III" v-show="progressNum > 66"></path>
+        <path :d="pathIII" stroke-width="8%" class="path-III" v-show="progressNum > 66"></path>
       </template>
       <!-- 检查更新条 -->
       <template v-if="state == 1">
-        <path :d="pathIIII" stroke-width="10%" class="path-IIII"></path>
+        <path :d="pathIIII" stroke-width="8%" class="path-IIII"></path>
       </template>
       <!-- 进度显示 -->
-      <template v-if="state == 2">
+      <!-- <template v-if="state == 2">
         <text :x="boxR" :y="boxR + boxR * 0.1" class="text-box">
           <tspan class="text-number">{{ progressNum > 100 ? 100 : parseInt(progressNum) }}</tspan>
           <tspan class="text-symbol">%</tspan>
         </text>
-      </template>
+      </template> -->
       <!-- 版本号 -->
-      <text :x="boxR" :y="boxR + boxR * 0.4" class="text-edition">
+      <!-- <text :x="boxR" :y="boxR + boxR * 0.4" class="text-edition">
         {{ version }}
-      </text>
+      </text> -->
     </svg>
-    <img :src="iconPath" alt="" class="icon-box" v-if="state < 2" />
+    <!-- <img :src="iconPath" alt="" class="icon-box" v-if="state < 2" /> -->
   </div>
 </template>
 
@@ -105,7 +105,7 @@ export default {
     // 基于 宽高为 252px 的大小进行等比缩放（以避免随意改变大小后造成的位置错位）
     multiple: {
       type: Number,
-      default: 1,
+      default: window.document.documentElement.clientWidth > 600 ? 1.4 : 1,
     },
   },
   data() {
@@ -168,21 +168,13 @@ export default {
       }
     });
 
-    // TODO 更新进度
-    setTimeout(() => {
-      this.state = 2;
+    window.renderProgress = (percent, state) => {
+      if (this.state !== 2) {
+        this.state = state;
+      }
 
-      let progressNum = 0;
-
-      const thr = setInterval(() => {
-        progressNum += 0.1;
-        this.progressNum = progressNum;
-
-        if (this.progressNum > 100) {
-          setInterval(thr);
-        }
-      }, 10);
-    }, 1000);
+      this.progressNum = percent;
+    }
   },
   methods: {
     getPath(number) {

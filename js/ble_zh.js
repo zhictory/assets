@@ -430,6 +430,7 @@ function onReceiveData(data) {
 
     case "81":
       var param = data.substring(8, 10);
+      
       if (param === "33") {
         var version1 = data.substring(10, 12);
         var version4 = data.substring(16, 18);
@@ -512,7 +513,7 @@ function sendGroupData(page) {
   var percent = Math.floor(((page + 1) / groupNum) * 100);
 
   text1.innerHTML = percent;
-  refreshProgress(percent);
+  refreshProgress(percent, 2);
   arrowTop.style.display = "none";
   mainVersion.style.marginTop = "0px";
 
@@ -530,28 +531,8 @@ function sendGroupData(page) {
   }
 }
 
-function refreshProgress(percent) {
-  // var pathLen = 71.628; //圆的周长
-
-  // if (percent > 50) {
-  //   circleLeft.style.display = "";
-  //   circleLeft.style.strokeDasharray = (pathLen * (percent - 50)) / 100 + "rem" + ",71.628rem";
-  //   circleRight.style.strokeDasharray = "35.814rem" + ",71.628rem";
-
-  //   rightColorStop.setAttribute("stop-color", "#ff0000");
-  //   leftColorStart.setAttribute("stop-color", "#ff0000");
-  // } else {
-  //   circleLeft.style.display = "none";
-
-  //   circleRight.style.strokeDasharray = (pathLen * percent) / 100 + "rem" + ",71.628rem";
-  //   //      rightColorStop.setAttribute("offset","90%");
-  // }
-
-  new Progress(ctx, pole, petal, radius, "transparent", -1.55, percent, "prev");
-
-  if (percent > petal / 2) {
-    new Progress(ctx2, pole, petal, radius, "transparent", 1.55, percent, "next");
-  }
+function refreshProgress(percent, state) {
+  window.renderProgress(percent, state)
 }
 
 //发送固件包数据
@@ -808,13 +789,15 @@ function setDarkMode() {
 
 setDarkMode();
 
-pageControl.style.display = "none";
-pageUpdate.style.display = "";
 
-const renderProgress = () => {
+const renderProgressScript = () => {
   const progressScript = document.createElement("script");
-  progressScript.src = "./dist/js/app.fc273be2.js";
+  progressScript.src = "./vue/dist/js/app.b26b44ab.js";
   document.querySelector("body").appendChild(progressScript);
 };
 
-renderProgress();
+renderProgressScript();
+
+
+// pageControl.style.display = "none";
+// pageUpdate.style.display = "";
