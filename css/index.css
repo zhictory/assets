@@ -362,6 +362,13 @@
   }
 }
 
+@media (min-width: 840px) {
+  .topImg .progress-wrap {
+    width: 35.28rem;
+    height: 35.28rem;
+  }
+}
+
 .topImg .progressContainer {
   position: absolute;
   width: 100%;

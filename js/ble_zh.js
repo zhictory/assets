@@ -430,7 +430,7 @@ function onReceiveData(data) {
 
     case "81":
       var param = data.substring(8, 10);
-      
+
       if (param === "33") {
         var version1 = data.substring(10, 12);
         var version4 = data.substring(16, 18);
@@ -532,7 +532,7 @@ function sendGroupData(page) {
 }
 
 function refreshProgress(percent, state) {
-  window.renderProgress(percent, state)
+  window.renderProgress(percent, state);
 }
 
 //发送固件包数据
@@ -789,7 +789,6 @@ function setDarkMode() {
 
 setDarkMode();
 
-
 const renderProgressScript = () => {
   const progressScript = document.createElement("script");
   progressScript.src = "./vue/dist/js/app.b26b44ab.js";
@@ -798,6 +797,5 @@ const renderProgressScript = () => {
 
 renderProgressScript();
 
-
-// pageControl.style.display = "none";
-// pageUpdate.style.display = "";
+pageControl.style.display = "none";
+pageUpdate.style.display = "";
