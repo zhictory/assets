@@ -126,6 +126,8 @@ devUpdate.addEventListener("click", function (event) {
     pageUpdate.style.display = "";
     devMore.style.display = "none";
     devName.innerHTML = "固件更新";
+
+    renderProgressScript();
   }
 
   event.stopPropagation();
@@ -794,8 +796,3 @@ const renderProgressScript = () => {
   progressScript.src = "./vue/dist/js/app.b26b44ab.js";
   document.querySelector("body").appendChild(progressScript);
 };
-
-renderProgressScript();
-
-pageControl.style.display = "none";
-pageUpdate.style.display = "";
