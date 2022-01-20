@@ -828,7 +828,7 @@ const testAutoUpgrade = () => {
         clearInterval(tid);
       }
       onReceiveData("----A9----------31");
-    }, 100);
+    }, 200);
   }, 1000);
 };
 
