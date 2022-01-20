@@ -126,8 +126,6 @@ devUpdate.addEventListener("click", function (event) {
     pageUpdate.style.display = "";
     devMore.style.display = "none";
     devName.innerHTML = "固件更新";
-
-    renderProgressScript();
   }
 
   event.stopPropagation();
@@ -340,17 +338,19 @@ function notifyBle() {
 
 // 3.对蓝牙设备发送数据
 function writeBLECharacteristicValue(data) {
-  window.hilink.writeBLECharacteristicValue(
-    UUID_OR_Mac,
-    notifyUuids[0].serviceUuid,
-    notifyUuids[0].writeCharacteristicUuid,
-    data,
-    "writeBLECharacteristicValueCallBack"
-  );
-  console.log("发送数据：", data);
-  window.writeBLECharacteristicValueCallBack = (res) => {
-    let data = dataChange(res);
-  };
+  if (window.hilink) {
+    window.hilink.writeBLECharacteristicValue(
+      UUID_OR_Mac,
+      notifyUuids[0].serviceUuid,
+      notifyUuids[0].writeCharacteristicUuid,
+      data,
+      "writeBLECharacteristicValueCallBack"
+    );
+    console.log("发送数据：", data);
+    window.writeBLECharacteristicValueCallBack = (res) => {
+      let data = dataChange(res);
+    };
+  }
 }
 
 // 蓝牙设备操控：
@@ -447,7 +447,7 @@ function onReceiveData(data) {
         localVersion1 = parseInt(localVersionArray[1]);
         localVersion4 = parseInt(localVersionArray[2]);
 
-        //检查更新
+        // 检查更新
         checkUpdate();
       }
       break;
@@ -462,6 +462,7 @@ function onReceiveData(data) {
             pageUpdate.style.display = "";
             devName.innerHTML = "固件更新";
             devMore.style.display = "none";
+
             checkUpdate();
           } else {
             //判断固件类型
@@ -489,8 +490,12 @@ function onReceiveData(data) {
 
         //请求某一页数据
         case "31":
-          var requestPageNum = hex2int(data.substring(18, 22));
-          sendGroupData(requestPageNum);
+          if (window.requestPageNum) {
+            sendGroupData(window.requestPageNum);
+          } else {
+            var requestPageNum = hex2int(data.substring(18, 22));
+            sendGroupData(requestPageNum);
+          }
           break;
 
         case "32":
@@ -512,12 +517,17 @@ function sendGroupData(page) {
   mainStatus.innerHTML = "正在更新...";
   bottomButton.innerHTML = "取消";
   statusProgress.style.display = "";
-  var percent = Math.floor(((page + 1) / groupNum) * 100);
+  if (window.groupNum) {
+    var percent = Math.floor(((page + 1) / window.groupNum) * 100);
+  } else {
+    var percent = Math.floor(((page + 1) / groupNum) * 100);
+  }
 
   text1.innerHTML = percent;
-  refreshProgress(percent, 2);
   arrowTop.style.display = "none";
   mainVersion.style.marginTop = "0px";
+
+  refreshProgress(percent, 2);
 
   var groupData = binData.substr(page * 1024 * 2, 1024 * 2);
 
@@ -687,6 +697,8 @@ AV.init({
 });
 
 function checkUpdate() {
+  renderProgressScript();
+
   mainStatus.innerHTML = "正在检查...";
   bottomButton.innerHTML = "正在检查";
   versionSize.style.visibility = "hidden";
@@ -796,3 +808,28 @@ const renderProgressScript = () => {
   progressScript.src = "./vue/dist/js/app.b26b44ab.js";
   document.querySelector("body").appendChild(progressScript);
 };
+
+// TODO 以下注释是调试自动升级
+const testAutoUpgrade = () => {
+  setTimeout(() => {
+    onReceiveData("----A9----------30");
+  }, 500);
+
+  window.groupNum = 100;
+  window.requestPageNum = -1;
+
+  setTimeout(() => {
+    onReceiveData("----A9----------31");
+
+    const tid = setInterval(() => {
+      window.requestPageNum++;
+      if (window.requestPageNum > 99) {
+        window.requestPageNum = 99;
+        clearInterval(tid);
+      }
+      onReceiveData("----A9----------31");
+    }, 100);
+  }, 1000);
+};
+
+// testAutoUpgrade();
