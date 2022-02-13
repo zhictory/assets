@@ -805,7 +805,7 @@ setDarkMode();
 
 const renderProgressScript = () => {
   const progressScript = document.createElement("script");
-  progressScript.src = "./vue/dist/js/app.b26b44ab.js";
+  progressScript.src = "./vue/src/dist/js/app.28e8c182.js";
   document.querySelector("body").appendChild(progressScript);
 };
 
@@ -832,4 +832,4 @@ const testAutoUpgrade = () => {
   }, 1000);
 };
 
-// testAutoUpgrade();
+testAutoUpgrade();
